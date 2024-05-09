@@ -25,7 +25,7 @@ public class LivraisonController {
     public Livraison AjouterLivraison(@RequestBody Livraison l){
         return LivraisonService.ajouterlivraison(l);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagLivraison(@PathVariable Long id) {
 
         LivraisonService.desactiverlivraison(id);

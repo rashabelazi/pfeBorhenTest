@@ -23,7 +23,7 @@ public class CategorieController {
     public Categorie AjouterCategorie(@RequestBody Categorie categ){
         return categorieService.AjouterCategorie(categ);
     }
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public  void UpdateCateg(@PathVariable Long id, @RequestBody Categorie categ){
         categorieService.UpdateCategorie(id, categ);
 

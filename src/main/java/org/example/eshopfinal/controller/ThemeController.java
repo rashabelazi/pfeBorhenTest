@@ -27,7 +27,7 @@ public class ThemeController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagTheme(@PathVariable Long id){
         themeService.DesactiverTheme(id);
     }

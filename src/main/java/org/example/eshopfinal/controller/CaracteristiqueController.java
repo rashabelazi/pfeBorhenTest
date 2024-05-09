@@ -29,7 +29,7 @@ public class CaracteristiqueController {
     public CaracteristiquesProduits AjouterCaract(@RequestBody CaracteristiquesProduits car){
         return  caractProduitService.ajoutercaract(car);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void DesactiverCaract(@PathVariable Long id){
         caractProduitService.desactivercaract(id);
 

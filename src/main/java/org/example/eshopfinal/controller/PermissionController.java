@@ -23,7 +23,7 @@ public class PermissionController {
     public Permission AjouterPermission(@RequestBody Permission p){
         return permissionService.AjouterPermission(p);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagPermission(@PathVariable Long id){
 
         permissionService.FlagPermission(id);

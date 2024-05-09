@@ -27,7 +27,7 @@ public class RoleController {
         return roleService.Ajouterrole(r);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagRole(@PathVariable Long id){
         roleService.FlagRole(id);}
 

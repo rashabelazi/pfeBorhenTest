@@ -27,7 +27,7 @@ public class ProduitController {
     public Produit AjouterProduit(@RequestBody Produit p){
         return  produitService.ajouterproduit(p);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagProduit(@PathVariable Long id){
         produitService.desactiverproduit(id);}
 

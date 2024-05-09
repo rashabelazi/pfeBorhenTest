@@ -27,7 +27,7 @@ public class ClientController {
         return clientService.Ajouterclient(cli);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public  void DesactiverClient(@PathVariable Long id){
         clientService.Desactiverclient(id);
 

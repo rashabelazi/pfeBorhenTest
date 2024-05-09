@@ -23,7 +23,7 @@ public class StockController {
     public  Stock AjouterStock(@RequestBody Stock s){
         return StockService.Ajouterstock(s);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagStock(@PathVariable Long id) {
         StockService.flagstock(id);}
 

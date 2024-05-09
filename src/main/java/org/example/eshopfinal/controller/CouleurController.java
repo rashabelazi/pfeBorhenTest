@@ -24,7 +24,7 @@ public class CouleurController {
     public Couleur AjouterCouleur(@RequestBody Couleur c){
         return CouleurService.ajoutercouleur(c);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void DesactiverCouleur(@PathVariable String id) {
         CouleurService.desactiver(id);
 

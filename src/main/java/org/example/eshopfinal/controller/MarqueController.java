@@ -26,7 +26,7 @@ public class MarqueController {
     public Marque AjouterMarque(@RequestBody Marque m){
         return MarqueService.AjouterMarque(m);
     }
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public void FlagMarque(@PathVariable Long id)
     {
         MarqueService.desactivermarque(id);
