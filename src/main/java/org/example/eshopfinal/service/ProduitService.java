@@ -12,5 +12,10 @@ public interface ProduitService {
     void updateproduit(Produit p,Long idprod);
     void desactiverproduit(Long idprod);
     List <Produit> getAllProduit();
+    Produit getProduitById(Long id);
+    Produit getProduitByNom(String nom);
+    List<Produit> getProduitByCategorie(Long idcat);
+    List<Produit> getProduitByMarque(Long id);
+
 
 }

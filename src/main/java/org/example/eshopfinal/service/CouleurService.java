@@ -13,6 +13,9 @@ public interface CouleurService {
     void desactiver(String CodeCl);
     void updatecouleur(String  CodeCl, Couleur c );
     List <Couleur> getAllcouleur();
+    Couleur getbylibcl(String libcl);
+    Couleur getbyid(Long id);
+
 
 
 }

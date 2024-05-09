@@ -31,7 +31,7 @@ public class MarqueController {
     {
         MarqueService.desactivermarque(id);
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateMarque(@PathVariable Long id, @RequestBody Marque m)
     {
         MarqueService.updatemarque(id,m);

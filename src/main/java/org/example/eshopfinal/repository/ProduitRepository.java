@@ -9,18 +9,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
+    Optional<Produit> findByNomprod(String nom);
+
+    List<Produit> findByCategorieId(Long categorieId);
+    List<Produit> findByM_Id(Long marqueId);
 
 
-// Optional<Produit> findProduitByMarque(Marque marque);
-//
-// Optional<Produit>findProduitByCategorie(Categorie categorie);
-//
-// Optional<Produit>findProduitByCouleur(Couleur couleur);
 
 
 }

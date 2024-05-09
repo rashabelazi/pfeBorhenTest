@@ -1,5 +1,6 @@
 package org.example.eshopfinal.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
 import org.example.eshopfinal.entities.UserInfo;
@@ -18,6 +19,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -88,6 +90,15 @@ public class UserServiceImpl implements UserService {
         Type setOfDTOsType = new TypeToken<List<UserResponse>>(){}.getType();
         List<UserResponse> userResponses = modelMapper.map(users, setOfDTOsType);
         return userResponses;
+    }
+    @Override
+    public UserInfo getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public UserInfo getUserByRole(String role) {
+        return userRepository.findByRole(role);
     }
 
 

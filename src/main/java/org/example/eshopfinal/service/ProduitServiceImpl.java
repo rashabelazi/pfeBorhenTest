@@ -1,6 +1,7 @@
 package org.example.eshopfinal.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.example.eshopfinal.entities.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,34 @@ public class ProduitServiceImpl implements ProduitService {
 
         return (List<Produit>)RepProduit.findAll();
     }
+    @Override
+    public Produit getProduitById(Long id){
+        return RepProduit.findById(id).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
+        );
+    }
+    @Override
+    public Produit getProduitByNom(String nom){
+        return (Produit) RepProduit.findByNomprod(nom).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
+        );
+    }
+    @Override
+    public List<Produit> getProduitByCategorie(Long idcat) {
+        List<Produit> produits = RepProduit.findByCategorieId(idcat);
+        if (produits.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette catégorie.");
+        }
+        return produits;
+    }
+    @Override
+    public List<Produit> getProduitByMarque(Long id){
+        List<Produit> produits = RepProduit.findByM_Id(id);
+        if (produits.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette marque.");
+        }
+        return produits;
+    }
+
+
 }

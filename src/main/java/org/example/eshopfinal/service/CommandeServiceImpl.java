@@ -31,6 +31,14 @@ public class CommandeServiceImpl implements CommandeService {
         );
         commandeToFlag.setFlag(true);
     }
+    @Override
+    public Commande getCommandeById(Long id) {
+
+        return  Repcmd.findById(id).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,"User existe pas dans la bd")
+        );
+    }
+
 
 
 }

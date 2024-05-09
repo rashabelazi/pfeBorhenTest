@@ -54,5 +54,14 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> getAllRole() {
         return (List<Role>) RepRole.findAll();
     }
+
+
+    @Override
+    public Role getRoleById(Long idr) {
+        return RepRole.findById(idr).orElse
+                (null);
+
+
+    }
 }
 

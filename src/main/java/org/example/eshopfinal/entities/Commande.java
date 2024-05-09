@@ -36,7 +36,6 @@ public class Commande {
     @OneToOne
     private Livraison livraison;
 
-    @OneToMany
-    private List<Produit> produitList;
-
+    @ManyToMany
+    private List<Produit> produits;
 }

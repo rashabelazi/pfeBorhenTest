@@ -25,7 +25,7 @@ public class Couleur {
 
 
     @OneToMany
-    @JoinColumn(name="idprod")
-    private List<Produit> produitList;
+    @JoinColumn(name="idc")
+    private List<Stock> stocks;
 }
 

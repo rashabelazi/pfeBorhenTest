@@ -28,7 +28,7 @@ public class PermissionController {
 
         permissionService.FlagPermission(id);
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void updatePermission(@PathVariable Long id,@RequestBody Permission p){
         permissionService.UpdatePermission(id,p);
     }

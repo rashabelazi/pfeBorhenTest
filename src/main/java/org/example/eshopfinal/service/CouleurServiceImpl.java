@@ -49,4 +49,13 @@ public class CouleurServiceImpl implements CouleurService {
     public List<Couleur> getAllcouleur() {
         return (List<Couleur>) RepCouleur.findAll();
     }
+
+    @Override
+    public Couleur getbylibcl(String libcl) {
+        return RepCouleur.findByLibcl(libcl);
+    }
+        @Override
+    public Couleur getbyid(Long id) {
+        return RepCouleur.findById(id);
+        }
 }

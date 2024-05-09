@@ -24,5 +24,10 @@ public class CommandeController {
 
         commandeService.validercommande(id);
     }
+    @GetMapping("commande/{id}")
+    public Commande getCommandeById(@PathVariable Long id){
+        return commandeService.getCommandeById(id);
+    }
+
 }
 

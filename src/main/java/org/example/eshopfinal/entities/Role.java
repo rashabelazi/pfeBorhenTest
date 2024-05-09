@@ -21,8 +21,8 @@ public class Role {
     private String libr;
     private Boolean FLAG;
 
-    //@OneToMany
-    //private List<UserInfo> u;
+    @OneToMany
+    private List<UserInfo> u;
 
     @OneToMany
     private List<Permission> permissions;

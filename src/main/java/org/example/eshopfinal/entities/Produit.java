@@ -28,19 +28,22 @@ public class Produit {
     private Boolean flag;
 
     @ManyToOne
+    @JoinColumn(name="idm")
     private Marque m;
 
-    @ManyToOne
-    private Couleur couleur;
+    @OneToMany
+    private List<Stock> stock;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="idgateg")
     private Categorie categorie;
+
 
     @ManyToMany
     private  List<UserInfo> userEntityList;
 
-    @OneToOne
-    private Commande commande;
+    @ManyToMany
+    private List<Commande> commandes;
 
 
 

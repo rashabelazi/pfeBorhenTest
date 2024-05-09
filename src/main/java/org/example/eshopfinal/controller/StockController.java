@@ -27,7 +27,7 @@ public class StockController {
     public void FlagStock(@PathVariable Long id) {
         StockService.flagstock(id);}
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateStock(@PathVariable Long id,@RequestBody Stock s){
         StockService.updatestock(id,s);}
 

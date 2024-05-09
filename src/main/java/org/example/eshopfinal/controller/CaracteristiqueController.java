@@ -16,7 +16,6 @@ import java.util.List;
 public class CaracteristiqueController {
 
 
-
     @Autowired
     CaracteristiquesProduitsServiceImpl caractProduitService;
 
@@ -34,7 +33,7 @@ public class CaracteristiqueController {
         caractProduitService.desactivercaract(id);
 
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateCaract(@PathVariable Long id,@RequestBody CaracteristiquesProduits car){
         caractProduitService.updatecaract(id,car);
     }

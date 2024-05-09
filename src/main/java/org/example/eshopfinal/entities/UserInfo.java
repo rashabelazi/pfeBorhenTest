@@ -9,6 +9,7 @@ import lombok.ToString;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,6 +31,9 @@ public class UserInfo {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany
+    private List<Produit> produits;
 
 
 }

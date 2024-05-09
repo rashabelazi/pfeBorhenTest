@@ -12,5 +12,7 @@ public interface CommandeService {
     List <Commande> getAllcommande();
     void validercommande(Long idcmd );
 
+    Commande getCommandeById(Long id);
+
 
 }

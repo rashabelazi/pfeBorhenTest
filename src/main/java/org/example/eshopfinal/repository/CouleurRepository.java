@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CouleurRepository extends CrudRepository<Couleur, String> {
+    Couleur findByLibcl(String libcl);
+    Couleur findById(Long id);
 
 }

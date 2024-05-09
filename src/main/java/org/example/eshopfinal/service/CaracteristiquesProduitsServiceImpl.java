@@ -16,7 +16,8 @@ import org.example.eshopfinal.repository.CaracteristiquesProduitsRepository;
 @Service
 @RequiredArgsConstructor
 public class CaracteristiquesProduitsServiceImpl implements CaracteristiquesProduitsService {
-    @Autowired //injection indipences
+    @Autowired
+
     CaracteristiquesProduitsRepository RepCarac;
 
     @Override

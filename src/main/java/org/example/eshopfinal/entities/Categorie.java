@@ -1,10 +1,12 @@
 package org.example.eshopfinal.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 
 import java.util.List;
@@ -16,12 +18,14 @@ import java.util.List;
 @Table
 @Builder
 public class Categorie {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idgateg;
+    private Long id;
+
     private String libcateg;
     private  boolean flag;
 
     @OneToMany
+    @JoinColumn(name="idcateg")
     private List<Produit> produitList;
 }

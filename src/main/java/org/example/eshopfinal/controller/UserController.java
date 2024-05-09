@@ -2,6 +2,7 @@ package org.example.eshopfinal.controller;
 
 
 import org.example.eshopfinal.dto.*;
+import org.example.eshopfinal.entities.UserInfo;
 import org.example.eshopfinal.models.RefreshToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -104,5 +105,17 @@ public class UserController {
                             .token(refreshTokenRequestDTO.getToken()).build();
                 }).orElseThrow(() ->new RuntimeException("Refresh Token is not in DB..!!"));
     }
+
+    @GetMapping("/user/{id}")
+    public UserInfo getUserById(@PathVariable Long id){
+        return userService.getUserById(id);
+    }
+
+    @GetMapping("/user/role/{role}")
+    public UserInfo getUserByRole(@PathVariable String role){
+        return userService.getUserByRole(role);
+    }
+
+
 
 }

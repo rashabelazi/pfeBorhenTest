@@ -27,11 +27,20 @@ public class CouleurController {
     @PutMapping("/{id}")
     public void DesactiverCouleur(@PathVariable String id) {
         CouleurService.desactiver(id);
-
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateCouleur(@PathVariable String id, @RequestBody Couleur c){
         CouleurService.updatecouleur(id,c);
     }
+    @GetMapping("/libelle/{libcl}")
+
+    public Couleur getByLibelle(@PathVariable String libcl){
+        return CouleurService.getbylibcl(libcl);
+    }
+    @GetMapping("/id/{id}")
+    public Couleur getById(@PathVariable Long id){
+        return CouleurService.getbyid(id);
+    }
+
 }
 

@@ -23,6 +23,14 @@ public class Stock {
     private String emplacement;
     private boolean flag;
 
+    @ManyToOne
+    @JoinColumn(name="idprod")
+    private Produit produit;
+
+    @ManyToOne
+    @JoinColumn(name="idc")
+    private Couleur couleur;
+
 
 
 }

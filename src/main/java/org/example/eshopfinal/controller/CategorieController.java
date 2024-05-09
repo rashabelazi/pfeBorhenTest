@@ -12,7 +12,8 @@ import java.util.List;
 @RequestMapping("/v1/api/categorie")
 @RequiredArgsConstructor
 public class CategorieController {
-    @Autowired
+
+@Autowired
     CategorieServiceImpl categorieService;
     @GetMapping
     public List<Categorie> getAllCategorie() {

@@ -10,4 +10,6 @@ public interface RoleService {
     void updaterole( Role r , long idr);
     void FlagRole(Long idr);
     List <Role> getAllRole();
+    Role getRoleById(Long idr);
+
 }

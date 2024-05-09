@@ -30,7 +30,7 @@ public class LivraisonController {
 
         LivraisonService.desactiverlivraison(id);
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateLivraison( @PathVariable Long id,@RequestBody Livraison l){
         LivraisonService.updatelivraison(id,l);
     }

@@ -24,6 +24,7 @@ public class RoleController {
 
     @PostMapping("/add")
     public Role AjouterRole(@RequestBody Role r){
+
         return roleService.Ajouterrole(r);
     }
 
@@ -31,9 +32,14 @@ public class RoleController {
     public void FlagRole(@PathVariable Long id){
         roleService.FlagRole(id);}
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateRole(@PathVariable Long id,@RequestBody Role r) {
         roleService.updaterole(r,id);}
+
+    @GetMapping("/{id}")
+    public Role getRoleById(@PathVariable Long id){
+        return roleService.getRoleById(id);
+    }
 
 
 }

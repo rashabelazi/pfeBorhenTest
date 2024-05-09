@@ -32,7 +32,7 @@ public class ThemeController {
         themeService.DesactiverTheme(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateTheme(@PathVariable Long id, Theme t){
         themeService.UpdateTheme(id,t);
     }

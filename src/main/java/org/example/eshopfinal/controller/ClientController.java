@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("api/v1/client")
 @RequiredArgsConstructor
 public class ClientController {
-    @Autowired
+@Autowired
     ClientServiceImpl clientService;
     @GetMapping
     public List<Client> GetAllClient(){
@@ -32,7 +32,7 @@ public class ClientController {
         clientService.Desactiverclient(id);
 
     }
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public void UpdateClient(@RequestBody Client cli,@PathVariable Long id){
 
         clientService.updateclient(cli,id);
