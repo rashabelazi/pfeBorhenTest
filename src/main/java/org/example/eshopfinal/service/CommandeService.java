@@ -1,5 +1,6 @@
 package org.example.eshopfinal.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.example.eshopfinal.entities.Commande;
@@ -13,6 +14,8 @@ public interface CommandeService {
     void validercommande(Long idcmd );
 
     Commande getCommandeById(Long id);
+    List <Commande> getCommandeByEtat(String etatCmd);
+    List<Commande> getCommandeByDateCreation(Date datecmd);
 
 
 }

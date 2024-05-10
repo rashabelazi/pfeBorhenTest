@@ -22,7 +22,6 @@ public class Commande {
     private Integer numtransac;
     private Date datecmd;
     private String etatcmd;
-    private String piece;
     private Integer nbarticle;
     private float totalcmd;
     private boolean flag;

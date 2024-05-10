@@ -1,5 +1,6 @@
 package org.example.eshopfinal.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.example.eshopfinal.entities.Commande;
@@ -39,6 +40,18 @@ public class CommandeServiceImpl implements CommandeService {
         );
     }
 
+    @Override
+    public List<Commande> getCommandeByEtat(String etatCmd) {
+        List<Commande> commandes = Repcmd.findCommandeByEtatcmd(etatCmd);
+                return commandes;
+    }
+
+    @Override
+    public List<Commande> getCommandeByDateCreation(Date datecmd) {
+        List<Commande> commandes = Repcmd.findCommandeByDatecmd(datecmd);
+          return commandes;
+
+    }
 
 
 }
