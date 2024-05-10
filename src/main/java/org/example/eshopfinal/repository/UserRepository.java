@@ -11,5 +11,5 @@ public interface UserRepository extends RefreshableCRUDRepository<UserInfo, Long
     UserInfo findByUsername(String username);
     UserInfo findFirstById(Long id);
 
-   // UserInfo findByRole(Role role);
+//    UserInfo findByRole(Role role);
 }

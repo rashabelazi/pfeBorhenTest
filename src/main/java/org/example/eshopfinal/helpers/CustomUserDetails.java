@@ -24,10 +24,10 @@ public class CustomUserDetails extends UserInfo implements UserDetails {
         this.password= byUsername.getPassword();
         List<GrantedAuthority> auths = new ArrayList<>();
 
-        for(Role role : byUsername.getRoles()){
+        Role role = byUsername.getRoles();
 
             auths.add(new SimpleGrantedAuthority(role.getLibr().toUpperCase()));
-        }
+
         this.authorities = auths;
     }
 

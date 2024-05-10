@@ -20,7 +20,7 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Long idprod;
+    private Long idPROD ;
     private String nomprod;
     private Integer reference;
     private float prix;
@@ -29,15 +29,15 @@ public class Produit {
     private Boolean flag;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="idm")
     private Marque m;
 
     @OneToMany
     private List<Stock> stock;
 
-    //@ManyToOne
-    //@JoinColumn(name="id")
-    //private Categorie categorie;
+    @ManyToOne
+    @JoinColumn(name="id")
+    private Categorie categorie;
 
 
     @ManyToMany

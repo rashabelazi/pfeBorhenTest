@@ -20,12 +20,13 @@ public class Role {
     private  Long id;
     private String libr;
     private Boolean FLAG;
-/*
+
 
 
     @OneToMany
-    private List<UserInfo> u;
-*/
+    @JoinColumn(name="idRole")
+    private List<UserInfo> user;
+
     @OneToMany
     private List<Permission> permissions;
 

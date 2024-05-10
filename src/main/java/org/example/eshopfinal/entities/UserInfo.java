@@ -29,8 +29,9 @@ public class UserInfo {
     @JsonIgnore
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name="idRole")
+    private Role roles ;
 
     @ManyToMany
     private List<Produit> produits;

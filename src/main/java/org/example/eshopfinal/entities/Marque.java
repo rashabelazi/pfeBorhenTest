@@ -23,11 +23,11 @@ public class Marque {
     private String description;
     private boolean flag;
 
-/*
+
     @OneToMany
     @JoinColumn(name="idm")
     private List <Produit> p;
 
- */
+
 }
 
