@@ -1,4 +1,4 @@
-package org.example.eshopfinal.entities;
+//package org.example.eshopfinal.entities;
 
 import java.util.Date;
 import java.util.List;
@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
 @Entity
 @Builder
 @Data
@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table
 public class Livraison {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private Long idliv;
     private String typeliv;
     private Date dateliv=new Date();
@@ -25,5 +27,7 @@ public class Livraison {
 
     @OneToMany
     private List<Commande> commandeList;
-}
 
+
+}
+*/

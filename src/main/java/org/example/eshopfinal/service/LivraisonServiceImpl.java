@@ -1,5 +1,5 @@
-package org.example.eshopfinal.service;
-
+//package org.example.eshopfinal.service;
+/*
 import java.util.List;
 
 import org.example.eshopfinal.entities.Livraison;
@@ -51,3 +51,6 @@ public class LivraisonServiceImpl implements LivraisonService {
         return (List<Livraison>) RepLiv.findAll();
     }
 }
+
+
+ */

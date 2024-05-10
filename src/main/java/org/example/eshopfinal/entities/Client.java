@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name="id")
     private Long Id;
     private String nom;
     private String prenom;
@@ -29,8 +30,8 @@ public class Client {
     private boolean flag;
     private String addresse;
 
-    @OneToMany
-    private List <Commande> c;
+    //@OneToMany
+    //private List <Commande> commandes;
 
     @OneToOne
     private UserInfo user;

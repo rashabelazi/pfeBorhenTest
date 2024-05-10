@@ -2,6 +2,7 @@ package org.example.eshopfinal.controller;
 
 
 import org.example.eshopfinal.dto.*;
+import org.example.eshopfinal.entities.Role;
 import org.example.eshopfinal.entities.UserInfo;
 import org.example.eshopfinal.models.RefreshToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,10 +112,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @GetMapping("/user/role/{role}")
-    public UserInfo getUserByRole(@PathVariable String role){
-        return userService.getUserByRole(role);
-    }
+
 
 
 

@@ -17,14 +17,17 @@ import java.util.List;
 public class Marque {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
     private String libm;
     private String description;
     private boolean flag;
 
-
+/*
     @OneToMany
     @JoinColumn(name="idm")
     private List <Produit> p;
+
+ */
 }
 

@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long idcmd;
     private Integer numtransac;
     private Date datecmd;
@@ -32,9 +33,9 @@ public class Commande {
     @ManyToOne
     private Client client;
 
-    @OneToOne
-    private Livraison livraison;
+    //@OneToOne
+    //private Livraison livraison;
 
-    @ManyToMany
-    private List<Produit> produits;
+    //@ManyToMany
+    //private List<Produit> produits;
 }

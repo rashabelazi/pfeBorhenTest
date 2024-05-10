@@ -3,6 +3,7 @@ package org.example.eshopfinal.service;
 
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
+import org.example.eshopfinal.entities.Role;
 import org.example.eshopfinal.entities.UserInfo;
 import org.springframework.security.core.userdetails.User;
 
@@ -17,7 +18,7 @@ public interface UserService {
 
     List<UserResponse> getAllUser();
     UserInfo getUserById(Long id);
-    UserInfo getUserByRole(String role);
+    //UserInfo getUserByRole(Role role);
 
 
 }

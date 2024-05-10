@@ -13,17 +13,19 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
+@Table(name = "ROLES")
 public class Role {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private  Long id;
     private String libr;
     private Boolean FLAG;
+/*
+
 
     @OneToMany
     private List<UserInfo> u;
-
+*/
     @OneToMany
     private List<Permission> permissions;
 

@@ -26,6 +26,6 @@ public class Categorie {
     private  boolean flag;
 
     @OneToMany
-    @JoinColumn(name="idcateg")
+    @JoinColumn(name="id")
     private List<Produit> produitList;
 }

@@ -1,5 +1,6 @@
 package org.example.eshopfinal.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="idprod")
+
     private Long idprod;
     private String nomprod;
     private Integer reference;
@@ -28,15 +29,15 @@ public class Produit {
     private Boolean flag;
 
     @ManyToOne
-    @JoinColumn(name="idm")
+    @JoinColumn(name="id")
     private Marque m;
 
     @OneToMany
     private List<Stock> stock;
 
-    @ManyToOne
-    @JoinColumn(name="idgateg")
-    private Categorie categorie;
+    //@ManyToOne
+    //@JoinColumn(name="id")
+    //private Categorie categorie;
 
 
     @ManyToMany
