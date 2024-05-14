@@ -1,20 +1,22 @@
 package org.example.eshopfinal.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Produit;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.eshopfinal.repository.ProduitRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.server.ResponseStatusException;
-import org.example.eshopfinal.repository.ProduitRepository;
+
+import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProduitServiceImpl implements ProduitService {
-    @Autowired
-    ProduitRepository RepProduit;
+
+    private final ProduitRepository RepProduit;
+
+    //LoggerFactory logger=new LoggerFactory(ProduitServiceImpl.class)
 
     @Override
     public Produit ajouterproduit(Produit p) {
@@ -40,54 +42,49 @@ public class ProduitServiceImpl implements ProduitService {
         if(p.getReference()!=null ){
             produitToUpdate.setReference(p.getReference());
         }
-
-
     }
 
     @Override
-    public void desactiverproduit(Long idprod) {
-        Produit produitToFlag = RepProduit.findById(idprod).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
-
-        );
-        produitToFlag.setFlag(true);
-
-
-    }
-
-    @Override
-    public List<Produit> getAllProduit() {
-
-        return (List<Produit>)RepProduit.findAll();
-    }
-    @Override
-    public Produit getProduitById(Long id){
-        return RepProduit.findById(id).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
-        );
-    }
-    @Override
-    public Produit getProduitByNom(String nom){
-        return (Produit) RepProduit.findByNomprod(nom).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
-        );
-    }
-    @Override
-    public List<Produit> getProduitByCategorie(Long idcat) {
-        List<Produit> produits = RepProduit.findByCategorieId(idcat);
-        if (produits.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette catégorie.");
-        }
-        return produits;
-    }
-    @Override
-    public List<Produit> getProduitByMarque(Long id){
-        List<Produit> produits = RepProduit.findByM_Id(id);
-        if (produits.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette marque.");
-        }
-        return produits;
+    public void supprimerProduit(Long idprod) throws ChangeSetPersister.NotFoundException {
+        Produit produit = RepProduit.findById(idprod)
+                .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+        RepProduit.deleteById(idprod);
+        //  logger.info("Product {} is deleted", produit.getIdPROD());
     }
 
 
+
+
+@Override
+public List<Produit> getAllProduit() {
+    return RepProduit.findAll();
+}
+@Override
+public Produit getProduitById(Long id){
+    return RepProduit.findById(id).orElseThrow(()->
+            new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
+    );
+}
+@Override
+public Produit getProduitByNom(String nom){
+    return (Produit) RepProduit.findByNomprod(nom).orElseThrow(()->
+            new ResponseStatusException(HttpStatus.NOT_FOUND,"produit existe pas dans la bd")
+    );
+}
+@Override
+public List<Produit> getProduitByCategorie(Long idcat) {
+    List<Produit> produits = RepProduit.findByCategorieId(idcat);
+    if (produits.isEmpty()) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette catégorie.");
+    }
+    return produits;
+}
+@Override
+public List<Produit> getProduitByMarque(Long id){
+    List<Produit> produits = RepProduit.findByM_Id(id);
+    if (produits.isEmpty()) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aucun produit trouvé pour cette marque.");
+    }
+    return produits;
+}
 }

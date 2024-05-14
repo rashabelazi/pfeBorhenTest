@@ -22,7 +22,9 @@ public class Marque {
     private String libm;
     private String description;
     private boolean flag;
-
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
 
     @OneToMany
     @JoinColumn(name="idm")

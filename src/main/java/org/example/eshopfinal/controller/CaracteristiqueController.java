@@ -5,6 +5,7 @@ import org.example.eshopfinal.entities.CaracteristiquesProduits;
 import org.example.eshopfinal.service.CaracteristiquesProduitsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 import org.example.eshopfinal.service.CaracteristiquesProduitsService;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/caracteristique")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CaracteristiqueController {
 
 
@@ -28,9 +30,9 @@ public class CaracteristiqueController {
     public CaracteristiquesProduits AjouterCaract(@RequestBody CaracteristiquesProduits car){
         return  caractProduitService.ajoutercaract(car);
     }
-    @PutMapping("/{id}")
-    public void DesactiverCaract(@PathVariable Long id){
-        caractProduitService.desactivercaract(id);
+    @DeleteMapping("delete/{id}")
+    public void supprimercaract( @PathVariable Long id) throws ChangeSetPersister.NotFoundException {
+        caractProduitService.supprimercaract(id);
 
     }
     @PutMapping("update/{id}")

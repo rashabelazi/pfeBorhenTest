@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/commande")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CommandeController {
     @Autowired
    CommandeServiceImpl commandeService;

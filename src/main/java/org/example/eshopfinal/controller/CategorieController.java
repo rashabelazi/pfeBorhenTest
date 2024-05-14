@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Categorie;
 import org.example.eshopfinal.service.CategorieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/api/categorie")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CategorieController {
 
 @Autowired
@@ -28,5 +30,9 @@ public class CategorieController {
     public  void UpdateCateg(@PathVariable Long id, @RequestBody Categorie categ){
         categorieService.UpdateCategorie(id, categ);
 
+    }
+    @DeleteMapping("delete/{id}")
+     public void supprimerCategorie( @PathVariable Long id) throws ChangeSetPersister.NotFoundException {
+        categorieService.supprimerCategorie(id);
     }
 }

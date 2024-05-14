@@ -5,8 +5,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Role;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.server.ResponseStatusException;
@@ -42,11 +42,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Transactional
     @Override
-    public void FlagRole(Long idr) {
-        Role roleToFlag = RepRole.findById(idr).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"Role existe pas dans la bd")
-        );
-        roleToFlag.setFLAG(true);
+    public Role FlagRole(Long idr) {
+
+            Role role = RepRole.findById(idr).orElseThrow(() -> new UsernameNotFoundException("Role not found"));
+            role.setFLAG(!role.getFLAG());
+            return RepRole.save(role);
     }
 
 

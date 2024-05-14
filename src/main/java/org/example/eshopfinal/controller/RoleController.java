@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/v1/role")
+@CrossOrigin(origins = "*")
 public class RoleController {
 
     private final RoleService roleService;

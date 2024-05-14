@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public interface ClientService {
     Client Ajouterclient(Client cli);
     void updateclient(Client cli, Long id);
-    void Desactiverclient(Long id);
+    Client Desactiverclient(Long id);
     List <Client> getAllclient();
 
 }

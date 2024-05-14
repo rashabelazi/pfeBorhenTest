@@ -1,7 +1,9 @@
 package org.example.eshopfinal.service;
 
 import org.example.eshopfinal.entities.Categorie;
+import org.example.eshopfinal.entities.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -38,12 +40,14 @@ public class CategorieServiceImpl implements  CategorieService{
     }
 
     @Override
-    public void FlagCategorie(Long idcateg) {
-        Categorie categorieToFlag = RepCateg.findById(idcateg).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"categorie existe pas dans la bd")
+    public void supprimerCategorie(Long idcateg) throws ChangeSetPersister.NotFoundException {
+       Categorie categorie = RepCateg.findById(idcateg)
+                .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+        RepCateg.deleteById(idcateg);
+        //  logger.info("Product {} is deleted", produit.getIdPROD());
 
-        );
-        categorieToFlag.setFlag(true);
 
     }
+
+
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("api/v1/theme")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ThemeController {
     @Autowired
 
@@ -27,9 +28,9 @@ public class ThemeController {
 
     }
 
-    @PutMapping("/{id}")
-    public void FlagTheme(@PathVariable Long id){
-        themeService.DesactiverTheme(id);
+    @DeleteMapping("delete/{id}")
+    public void SupprimerTheme( @PathVariable Long id){
+        themeService.SupprimerTheme(id);
     }
 
     @PutMapping("update/{id}")

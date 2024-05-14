@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping ("api/v1/stock")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class StockController {
     StockServiceImpl StockService;
 

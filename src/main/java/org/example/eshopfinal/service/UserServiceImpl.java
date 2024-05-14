@@ -1,20 +1,23 @@
 package org.example.eshopfinal.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
-import org.example.eshopfinal.entities.Role;
 import org.example.eshopfinal.entities.UserInfo;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.example.eshopfinal.repository.UserRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -23,8 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     ModelMapper modelMapper = new ModelMapper();
 
@@ -96,6 +98,41 @@ public class UserServiceImpl implements UserService {
     public UserInfo getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public UserInfo FlagUser(Long id) {
+        UserInfo user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        user.setFlag(!user.isFlag());
+        return userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void UpdateUser(Long id, UserInfo u) {
+        UserInfo userEntityToUpdate = userRepository.findById(id).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,"User existe pas dans la base de données")
+
+        );
+        if (u.getUsername() != null && !u.getUsername().isEmpty()){
+            userEntityToUpdate.setUsername(u.getUsername());
+        }
+
+        if (u.getMail() != null && !u.getMail().isEmpty()){
+            userEntityToUpdate.setMail(u.getMail());
+        }
+        if (u.getNumTel() != null ){
+            userEntityToUpdate.setNumTel(u.getNumTel());
+        }
+
+        if (u.getPassword() != null && !u.getPassword().isEmpty()){
+            userEntityToUpdate.setPassword(u.getPassword());
+        }
+
+    }
+
+}
+
+
 /*
     @Override
     public UserInfo getUserByRole(Role role) {
@@ -105,4 +142,3 @@ public class UserServiceImpl implements UserService {
  */
 
 
-}

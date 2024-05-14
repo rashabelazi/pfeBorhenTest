@@ -27,6 +27,9 @@ public class Produit {
     private Date date =new Date();
     private String description;
     private Boolean flag;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
 
     @ManyToOne
     @JoinColumn(name="idm")

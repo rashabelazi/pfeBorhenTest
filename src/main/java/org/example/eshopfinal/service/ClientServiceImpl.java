@@ -6,6 +6,7 @@ import org.example.eshopfinal.entities.Client;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.server.ResponseStatusException;
@@ -57,11 +58,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Transactional
     @Override
-    public void Desactiverclient(Long id) {
-        Client clientToUpdate = Repclient.findById(id).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"Client existe pas dans la base de données")
+    public Client Desactiverclient(Long id) {
+        Client client = Repclient.findById(id).orElseThrow(() -> new UsernameNotFoundException("client not found"));
+        client.setFlag(!client.isFlag());
+        return Repclient.save(client);
 
-        );
 
     }
 

@@ -28,6 +28,9 @@ public class UserInfo {
     private String username;
     @JsonIgnore
     private String password;
+    private String mail;
+    private boolean flag;
+    private Integer numTel;
 
     @ManyToOne
     @JoinColumn(name="idRole")
@@ -35,6 +38,7 @@ public class UserInfo {
 
     @ManyToMany
     private List<Produit> produits;
+
 
 
 }

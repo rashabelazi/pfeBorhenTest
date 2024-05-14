@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -114,6 +115,14 @@ public class UserController {
 
 
 
+    @PutMapping("/{id}")
+    public void UpdateUser(@PathVariable Long id, @RequestBody UserInfo u) {
+        UserService.UpdateUser(id,u);
+    }
 
-
+    @PutMapping("/{id}/flag")
+    public ResponseEntity<UserInfo> flagUser(@PathVariable("id") Long id) {
+        UserInfo user = userService.FlagUser(id);
+        return ResponseEntity.ok(user);
+    }
 }

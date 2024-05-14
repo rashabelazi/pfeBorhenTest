@@ -5,7 +5,9 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.CaracteristiquesProduits;
 import jakarta.transaction.Transactional;
+import org.example.eshopfinal.entities.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +28,17 @@ public class CaracteristiquesProduitsServiceImpl implements CaracteristiquesProd
         return car;
     }
 
-    @Transactional
     @Override
-    public void desactivercaract(Long codecar) {
-        CaracteristiquesProduits caracToFlag = RepCarac.findById(codecar).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"caracteristique existe pas dans la base de données")
+    public void supprimercaract(Long codecar) throws ChangeSetPersister.NotFoundException {
+       CaracteristiquesProduits caract = RepCarac.findById(codecar)
+                .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+        RepCarac.deleteById(codecar);
+        //  logger.info("Product {} is deleted", produit.getIdPROD());
 
-        );
-        caracToFlag.setFlag(true);
 
     }
+
+
 
     @Transactional
     @Override

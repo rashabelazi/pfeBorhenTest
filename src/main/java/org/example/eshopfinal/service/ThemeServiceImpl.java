@@ -1,8 +1,10 @@
 package org.example.eshopfinal.service;
 
 
+import org.example.eshopfinal.entities.Produit;
 import org.example.eshopfinal.entities.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,13 +41,14 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
-    public void DesactiverTheme(Long idtheme) {
-        Theme ThemeToFlag = RepTheme.findById(idtheme).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"theme existe pas dans la bd")
-
-        );
-        ThemeToFlag.setFlag(true);
+    public void SupprimerTheme(Long idtheme) throws ChangeSetPersister.NotFoundException {
+       Theme theme = RepTheme.findById(idtheme)
+                .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+        RepTheme.deleteById(idtheme);
+        //logger.info("theme {} is deleted", theme.getIdTheme());
 
 
     }
+
+
 }

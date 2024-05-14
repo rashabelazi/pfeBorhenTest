@@ -2,17 +2,25 @@ package org.example.eshopfinal.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.example.eshopfinal.entities.Marque;
 import org.example.eshopfinal.entities.Produit;
 import org.example.eshopfinal.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("api/v1/produit")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ProduitController {
     @Autowired
     ProduitService produitService;
@@ -27,9 +35,11 @@ public class ProduitController {
     public Produit AjouterProduit(@RequestBody Produit p){
         return  produitService.ajouterproduit(p);
     }
-    @PutMapping("/{id}")
-    public void FlagProduit(@PathVariable Long id){
-        produitService.desactiverproduit(id);}
+    @DeleteMapping("delete/{id}")
+    public void supprimerProduit( @PathVariable Long id) throws ChangeSetPersister.NotFoundException {
+        produitService.supprimerProduit(id);
+
+    }
 
     @PutMapping("update/{id}")
     public void UpdateProduit( @RequestBody Produit p , @PathVariable Long id){
@@ -50,6 +60,16 @@ public class ProduitController {
     @GetMapping("/marque/{idmarque}")
     public List<Produit> getProduitByMarque(@PathVariable Long idmarque){
         return produitService.getProduitByMarque(idmarque);
+    }
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Produit> saveProduit(@RequestParam("file") MultipartFile file,
+                                               @RequestParam("nomprod") String nomprod) throws IOException, IOException {
+        Produit produit = new Produit();
+        produit.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+        produit.setNomprod(nomprod);
+        produitService.ajouterproduit(produit);
+        return new ResponseEntity<>(produit, HttpStatus.CREATED);
     }
 
 
