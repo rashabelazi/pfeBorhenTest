@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 import org.example.eshopfinal.service.ThemeService;
 
@@ -29,7 +30,7 @@ public class ThemeController {
     }
 
     @DeleteMapping("delete/{id}")
-    public void SupprimerTheme( @PathVariable Long id){
+    public void SupprimerTheme( @PathVariable Long id) throws ChangeSetPersister.NotFoundException {
         themeService.SupprimerTheme(id);
     }
 

@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
+import org.example.eshopfinal.entities.Role;
 import org.example.eshopfinal.entities.UserInfo;
 
 import org.modelmapper.ModelMapper;
@@ -20,7 +21,9 @@ import org.example.eshopfinal.repository.UserRepository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.reflect.Type;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +58,7 @@ public class UserServiceImpl implements UserService {
 
         UserInfo user = modelMapper.map(userRequest, UserInfo.class);
         user.setPassword(encodedPassword);
+        user.setRoles(userRequest.getRoles().stream().findFirst().get());
         if(userRequest.getId() != null){
             UserInfo oldUser = userRepository.findFirstById(userRequest.getId());
             if(oldUser != null){
@@ -72,8 +76,10 @@ public class UserServiceImpl implements UserService {
 //            user.setCreatedBy(currentUser);
             savedUser = userRepository.save(user);
         }
-        userRepository.refresh(savedUser);
+          userRepository.refresh(savedUser);
+
         UserResponse userResponse = modelMapper.map(savedUser, UserResponse.class);
+        userResponse.setRoles(userRequest.getRoles());
         return userResponse;
     }
 

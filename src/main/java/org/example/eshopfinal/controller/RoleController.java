@@ -29,7 +29,7 @@ public class RoleController {
         return roleService.Ajouterrole(r);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("flag/{id}")
     public void FlagRole(@PathVariable Long id){
         roleService.FlagRole(id);}
 

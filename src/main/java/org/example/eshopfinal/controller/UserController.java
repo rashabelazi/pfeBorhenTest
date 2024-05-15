@@ -41,9 +41,14 @@ public class UserController {
     @PostMapping(value = "/save")
     public ResponseEntity saveUser(@RequestBody UserRequest userRequest) {
         try {
+          /*  UserInfo user = new UserInfo();
+            user.setUsername();
+            user.setPassword();
+            user.setRoles(userRequest.getRoles().);*/
             UserResponse userResponse = userService.saveUser(userRequest);
             return ResponseEntity.ok(userResponse);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -117,7 +122,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public void UpdateUser(@PathVariable Long id, @RequestBody UserInfo u) {
-        UserService.UpdateUser(id,u);
+        userService.UpdateUser(id,u);
     }
 
     @PutMapping("/{id}/flag")
