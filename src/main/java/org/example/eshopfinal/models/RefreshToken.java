@@ -19,7 +19,7 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @Table(name = "REFRESH_TOKENS")
 public class RefreshToken {
 
@@ -27,7 +27,6 @@ public class RefreshToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String token;
-
     private Instant expiryDate;
 
     @OneToOne

@@ -17,6 +17,7 @@ import org.example.eshopfinal.service.JwtService;
 import org.example.eshopfinal.service.RefreshTokenService;
 import org.example.eshopfinal.service.UserService;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 
 
@@ -85,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
+    public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO) throws AccountNotFoundException {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
         if(authentication.isAuthenticated()){
             RefreshToken refreshToken = refreshTokenService.createRefreshToken(authRequestDTO.getUsername());

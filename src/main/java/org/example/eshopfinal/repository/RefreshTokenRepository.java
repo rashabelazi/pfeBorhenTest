@@ -1,6 +1,7 @@
 package org.example.eshopfinal.repository;
 
 
+import org.example.eshopfinal.entities.UserInfo;
 import org.example.eshopfinal.models.RefreshToken;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ import java.util.Optional;
 public interface RefreshTokenRepository extends RefreshableCRUDRepository<RefreshToken, Integer> {
 
     Optional<RefreshToken> findByToken(String token);
+
+    Optional<RefreshToken> findByUserInfo(UserInfo userInfo);
 }

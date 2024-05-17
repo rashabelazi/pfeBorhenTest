@@ -8,7 +8,6 @@ import lombok.Data;
 @Builder
 @Data
 public class RoleDto {
-    private  Long idr;
     private String libr;
     private Boolean FLAG;
 }
