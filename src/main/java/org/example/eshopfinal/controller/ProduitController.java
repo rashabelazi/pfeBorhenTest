@@ -1,10 +1,8 @@
 package org.example.eshopfinal.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.example.eshopfinal.entities.Marque;
 import org.example.eshopfinal.entities.Produit;
-import org.example.eshopfinal.service.ProduitService;
+import org.example.eshopfinal.service.impl.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;

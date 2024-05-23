@@ -1,10 +1,9 @@
-package org.example.eshopfinal.config;
+package org.example.eshopfinal.security;
 
-import org.example.eshopfinal.filtre.JwtAuthFilter;
-import org.example.eshopfinal.helpers.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 /**
  * @author mhmdz
  * Created By Zeeshan on 20-05-2023
@@ -26,15 +26,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
-public class SecurityConfig {
-
-    @Autowired
-    JwtAuthFilter jwtAuthFilter;
+@RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
+public class SecurityConfig{
+    private final JwtAuthenticationFilter jwtAuthenticationFilter ;
+    private final ActiveRoleEvaluator activeRoleEvaluator;
 
     @Bean
     public UserDetailsService userDetailsService(){
-        return new UserDetailsServiceImpl();
+        return new CustomerUserDetailsService();
     }
 
     @Bean
@@ -42,19 +42,14 @@ public class SecurityConfig {
         return http.
                 csrf((csrf)->csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/v1/save").permitAll()
                         .requestMatchers("/api/v1/login").permitAll()
                         .requestMatchers("/api/v1/refreshToken").permitAll()
                         .requestMatchers("/error/*").permitAll()
-                        .requestMatchers("/**").permitAll())
-                        //.anyRequest().authenticated())
-
+                        .anyRequest().authenticated())
                 .sessionManagement((sessionManagement)-> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
-
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
 
     @Bean
@@ -65,7 +60,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setUserDetailsService(new CustomerUserDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
 
@@ -74,6 +69,13 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public DefaultMethodSecurityExpressionHandler methodSecurityExpressionHandler() {
+        DefaultMethodSecurityExpressionHandler expressionHandler = new DefaultMethodSecurityExpressionHandler();
+        expressionHandler.setPermissionEvaluator(activeRoleEvaluator);
+        return expressionHandler;
     }
 
 }

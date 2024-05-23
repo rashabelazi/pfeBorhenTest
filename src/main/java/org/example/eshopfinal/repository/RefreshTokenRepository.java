@@ -1,7 +1,7 @@
 package org.example.eshopfinal.repository;
 
 
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 import org.example.eshopfinal.models.RefreshToken;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +17,5 @@ public interface RefreshTokenRepository extends RefreshableCRUDRepository<Refres
 
     Optional<RefreshToken> findByToken(String token);
 
-    Optional<RefreshToken> findByUserInfo(UserInfo userInfo);
+    Optional<RefreshToken> findByUser(User user);
 }

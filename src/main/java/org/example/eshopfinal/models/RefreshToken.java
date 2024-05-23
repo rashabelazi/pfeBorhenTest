@@ -1,6 +1,6 @@
 package org.example.eshopfinal.models;
 
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +31,6 @@ public class RefreshToken {
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserInfo userInfo;
+    private User user;
 
 }

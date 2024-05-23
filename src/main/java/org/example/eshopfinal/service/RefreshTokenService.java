@@ -1,9 +1,8 @@
 package org.example.eshopfinal.service;
 
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 import org.example.eshopfinal.models.RefreshToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.example.eshopfinal.repository.RefreshTokenRepository;
 import org.example.eshopfinal.repository.UserRepository;
@@ -31,11 +30,12 @@ public class RefreshTokenService {
     UserRepository userRepository;
 
     public RefreshToken createRefreshToken(String username) throws AccountNotFoundException {
-        UserInfo userInfo = userInfoRepository.findByUsername(username);
-        if(userInfo==null){
+        Optional<User> userOptional = userInfoRepository.findByUsername(username);
+        if (!userOptional.isPresent()) {
             throw new AccountNotFoundException("User not Found");
         }
-        RefreshToken refreshToken = refreshTokenRepository.findByUserInfo(userInfo)
+        User user = userOptional.get();
+        RefreshToken refreshToken = refreshTokenRepository.findByUser(user)
                 .map(existingToken -> existingToken.toBuilder()
                         .token(UUID.randomUUID().toString())
                         .expiryDate(Instant.now().plusMillis(600000))
@@ -43,7 +43,7 @@ public class RefreshTokenService {
                 .orElse(RefreshToken.builder()
                         .token(UUID.randomUUID().toString())
                         .expiryDate(Instant.now().plusMillis(600000))
-                        .userInfo(userInfo)
+                        .user(user)
                         .build());
         return refreshTokenRepository.save(refreshToken);
     }

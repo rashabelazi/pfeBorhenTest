@@ -1,12 +1,11 @@
 package org.example.eshopfinal.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
-import org.example.eshopfinal.service.ThemeService;
+import org.example.eshopfinal.service.impl.ThemeService;
 
 import java.util.List;
 

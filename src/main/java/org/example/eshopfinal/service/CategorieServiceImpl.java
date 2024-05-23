@@ -1,7 +1,7 @@
 package org.example.eshopfinal.service;
 
 import org.example.eshopfinal.entities.Categorie;
-import org.example.eshopfinal.entities.Produit;
+import org.example.eshopfinal.service.impl.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import org.example.eshopfinal.repository.CategorieRepository;
 
 import java.util.List;
 @Service
-public class CategorieServiceImpl implements  CategorieService{
+public class CategorieServiceImpl implements CategorieService {
     @Autowired
     CategorieRepository RepCateg;
     @Override

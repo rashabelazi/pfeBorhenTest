@@ -1,7 +1,8 @@
-package org.example.eshopfinal.helpers;
+package org.example.eshopfinal.security;
 
 
-import org.example.eshopfinal.entities.UserInfo;
+import lombok.RequiredArgsConstructor;
+import org.example.eshopfinal.entities.security.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +12,24 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.example.eshopfinal.repository.UserRepository;
 
+import java.util.Optional;
+
 @Component
-public class UserDetailsServiceImpl implements UserDetailsService {
+@RequiredArgsConstructor
+public class CustomerUserDetailsService implements UserDetailsService {
 
-    @Autowired
     private UserRepository userRepository;
-
-    private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomerUserDetailsService.class);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         logger.debug("Entering in loadUserByUsername Method...");
-        UserInfo user = userRepository.findByUsername(username);
-        if(user == null){
+        Optional<User> byUsername = userRepository.findByUsername(username);
+        if (!byUsername.isPresent()) {
             logger.error("Username not found: " + username);
-            throw new UsernameNotFoundException("could not found user..!!");
+            throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        logger.info("User Authenticated Successfully..!!!");
-        return new CustomUserDetails(user);
+        logger.info("User Authenticated Successfully: " + username);
+        return byUsername.get();
     }
 }

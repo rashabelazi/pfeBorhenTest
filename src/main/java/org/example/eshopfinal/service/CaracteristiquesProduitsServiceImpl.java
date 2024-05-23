@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.CaracteristiquesProduits;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.entities.Produit;
+import org.example.eshopfinal.service.impl.CaracteristiquesProduitsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;

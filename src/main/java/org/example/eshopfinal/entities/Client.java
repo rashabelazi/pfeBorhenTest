@@ -1,13 +1,13 @@
 package org.example.eshopfinal.entities;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.eshopfinal.entities.security.User;
 
 @Entity
 @Builder
@@ -34,7 +34,7 @@ public class Client {
     //private List <Commande> commandes;
 
     @OneToOne
-    private UserInfo user;
+    private User user;
 
 
 }

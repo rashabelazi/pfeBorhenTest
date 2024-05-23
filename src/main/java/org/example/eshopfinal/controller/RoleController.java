@@ -1,9 +1,8 @@
 package org.example.eshopfinal.controller;
 
 import lombok.AllArgsConstructor;
-import org.example.eshopfinal.dto.RoleDto;
-import org.example.eshopfinal.entities.Role;
-import org.example.eshopfinal.service.RoleService;
+import org.example.eshopfinal.entities.security.Role;
+import org.example.eshopfinal.service.impl.RoleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class RoleController {
 
     @PostMapping("/add")
     public Role AjouterRole(@RequestBody Role r){
-        return roleService.Ajouterrole(r);
+        return roleService.ajouterRrole(r);
     }
 
     @PutMapping("flag/{id}")

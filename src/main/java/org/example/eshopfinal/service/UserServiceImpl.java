@@ -4,12 +4,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
-import org.example.eshopfinal.entities.Role;
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 
+import org.example.eshopfinal.service.impl.UserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,9 +20,8 @@ import org.example.eshopfinal.repository.UserRepository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -50,17 +48,17 @@ public class UserServiceImpl implements UserService {
 //
 //        UserInfo currentUser = userRepository.findByUsername(usernameFromAccessToken);
 
-        UserInfo savedUser = null;
+        User savedUser = null;
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = userRequest.getPassword();
         String encodedPassword = encoder.encode(rawPassword);
 
-        UserInfo user = modelMapper.map(userRequest, UserInfo.class);
+        User user = modelMapper.map(userRequest, User.class);
         user.setPassword(encodedPassword);
         user.setRoles(userRequest.getRoles().stream().findFirst().get());
         if(userRequest.getId() != null){
-            UserInfo oldUser = userRepository.findFirstById(userRequest.getId());
+            User oldUser = userRepository.findFirstById(userRequest.getId());
             if(oldUser != null){
                 oldUser.setId(user.getId());
                 oldUser.setPassword(user.getPassword());
@@ -84,38 +82,44 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUser() {
+    public UserResponse getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetail = (UserDetails) authentication.getPrincipal();
-        String usernameFromAccessToken = userDetail.getUsername();
-        UserInfo user = userRepository.findByUsername(usernameFromAccessToken);
-        UserResponse userResponse = modelMapper.map(user, UserResponse.class);
-        return userResponse;
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String usernameFromAccessToken = userDetails.getUsername();
+
+        Optional<User> userOptional = userRepository.findByUsername(usernameFromAccessToken);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            UserResponse userResponse = modelMapper.map(user, UserResponse.class);
+            return userResponse;
+        } else {
+            throw new UsernameNotFoundException("User not found with username: " + usernameFromAccessToken);
+        }
     }
 
     @Override
     public List<UserResponse> getAllUser() {
-        List<UserInfo> users = (List<UserInfo>) userRepository.findAll();
+        List<User> users = (List<User>) userRepository.findAll();
         Type setOfDTOsType = new TypeToken<List<UserResponse>>(){}.getType();
         List<UserResponse> userResponses = modelMapper.map(users, setOfDTOsType);
         return userResponses;
     }
     @Override
-    public UserInfo getUserById(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public UserInfo FlagUser(Long id) {
-        UserInfo user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public User FlagUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setFlag(!user.isFlag());
         return userRepository.save(user);
     }
 
     @Override
     @Transactional
-    public void UpdateUser(Long id, UserInfo u) {
-        UserInfo userEntityToUpdate = userRepository.findById(id).orElseThrow(()->
+    public void UpdateUser(Long id, User u) {
+        User userEntityToUpdate = userRepository.findById(id).orElseThrow(()->
                 new ResponseStatusException(HttpStatus.NOT_FOUND,"User existe pas dans la base de données")
 
         );

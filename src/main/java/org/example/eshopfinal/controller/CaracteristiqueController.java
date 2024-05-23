@@ -1,27 +1,26 @@
 package org.example.eshopfinal.controller;
 
-import lombok.RequiredArgsConstructor;
+import org.example.eshopfinal.decorators.ActiveRole;
 import org.example.eshopfinal.entities.CaracteristiquesProduits;
 import org.example.eshopfinal.service.CaracteristiquesProduitsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
-import org.example.eshopfinal.service.CaracteristiquesProduitsService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/caracteristique")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CaracteristiqueController {
 
+    private final CaracteristiquesProduitsServiceImpl caractProduitService;
+    public CaracteristiqueController(CaracteristiquesProduitsServiceImpl service){
+        this.caractProduitService=service;
+    }
 
-    @Autowired
-    CaracteristiquesProduitsServiceImpl caractProduitService;
 
     @GetMapping
+    @ActiveRole(roles = {"ROLE_X", "ROLE_Y"})
     public List<CaracteristiquesProduits> GetAllCaract(){
         List<CaracteristiquesProduits> list=caractProduitService.getAllCract();
         return list;

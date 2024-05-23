@@ -1,10 +1,9 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
-import org.example.eshopfinal.entities.Produit;
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 
 import java.util.List;
 
@@ -12,13 +11,13 @@ public interface UserService {
 
     UserResponse saveUser(UserRequest userRequest);
 
-    UserResponse getUser();
+    UserResponse getCurrentUser();
 
     List<UserResponse> getAllUser();
-    UserInfo getUserById(Long id);
+    User getUserById(Long id);
     //UserInfo getUserByRole(Role role);
-    UserInfo FlagUser(Long id);
-    void UpdateUser(Long Id, UserInfo u);
+    User FlagUser(Long id);
+    void UpdateUser(Long Id, User u);
 
 
 }

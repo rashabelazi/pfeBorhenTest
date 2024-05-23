@@ -3,6 +3,7 @@ package org.example.eshopfinal.service;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Produit;
 import org.example.eshopfinal.repository.ProduitRepository;
+import org.example.eshopfinal.service.impl.ProduitService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

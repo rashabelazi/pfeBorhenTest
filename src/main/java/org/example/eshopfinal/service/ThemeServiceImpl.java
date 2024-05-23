@@ -1,8 +1,8 @@
 package org.example.eshopfinal.service;
 
 
-import org.example.eshopfinal.entities.Produit;
 import org.example.eshopfinal.entities.Theme;
+import org.example.eshopfinal.service.impl.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,5 @@
 package org.example.eshopfinal.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.eshopfinal.entities.security.User;
 
 @Entity
 @Builder
@@ -44,7 +44,7 @@ public class Produit {
 
 
     @ManyToMany
-    private  List<UserInfo> userEntityList;
+    private  List<User> userEntityList;
 
     @ManyToMany
     private List<Commande> commandes;

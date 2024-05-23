@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 

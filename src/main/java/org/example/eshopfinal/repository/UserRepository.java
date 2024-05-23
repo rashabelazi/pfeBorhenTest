@@ -1,15 +1,16 @@
 package org.example.eshopfinal.repository;
 
-import org.example.eshopfinal.entities.Role;
-import org.example.eshopfinal.entities.UserInfo;
+import org.example.eshopfinal.entities.security.User;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends RefreshableCRUDRepository<UserInfo, Long> {
+public interface UserRepository extends RefreshableCRUDRepository<User, Long> {
 
-    UserInfo findByUsername(String username);
-    UserInfo findFirstById(Long id);
+    Optional<User> findByUsername(String username);
+    User findFirstById(Long id);
 
 //    UserInfo findByRole(Role role);
 }

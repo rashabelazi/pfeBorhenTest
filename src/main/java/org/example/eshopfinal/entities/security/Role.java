@@ -1,4 +1,4 @@
-package org.example.eshopfinal.entities;
+package org.example.eshopfinal.entities.security;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,16 +18,12 @@ public class Role {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private  Long id;
-    private String libr;
-    private Boolean FLAG;
-
-
-
+    private String label;
+    private Boolean flag;
     @OneToMany
     @JoinColumn(name="idRole")
-    private List<UserInfo> user;
+    private List<User> user;
 
-    @OneToMany
-    private List<Permission> permissions;
+
 
 }
