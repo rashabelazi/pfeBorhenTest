@@ -1,10 +1,10 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 
 import org.example.eshopfinal.entities.Couleur;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.service.impl.CouleurService;
+import org.example.eshopfinal.service.ICouleurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.example.eshopfinal.repository.CouleurRepository;
 
 @Service
-public class CouleurServiceImpl implements CouleurService {
+public class CouleurServiceImpl implements ICouleurService {
     @Autowired
     CouleurRepository RepCouleur;
     @Override

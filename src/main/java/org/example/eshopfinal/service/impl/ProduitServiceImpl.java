@@ -1,9 +1,9 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Produit;
 import org.example.eshopfinal.repository.ProduitRepository;
-import org.example.eshopfinal.service.impl.ProduitService;
+import org.example.eshopfinal.service.IProduitService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProduitServiceImpl implements ProduitService {
+public class ProduitServiceImpl implements IProduitService {
 
     private final ProduitRepository RepProduit;
 

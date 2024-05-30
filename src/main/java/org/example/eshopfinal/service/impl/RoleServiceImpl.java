@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.security.Role;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.service.impl.RoleService;
+import org.example.eshopfinal.service.IRoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import org.example.eshopfinal.repository.RoleRepository;
 
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl implements IRoleService {
     private final RoleRepository roleRepository;
     @Override
     public Role ajouterRrole(Role r) {

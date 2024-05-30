@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import org.example.eshopfinal.decorators.ActiveRole;
 import org.example.eshopfinal.entities.CaracteristiquesProduits;
-import org.example.eshopfinal.service.CaracteristiquesProduitsServiceImpl;
+import org.example.eshopfinal.service.impl.CaracteristiquesProduitsServiceImpl;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 

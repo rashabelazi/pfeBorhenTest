@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public interface CommandeService {
+public interface ICommandeService {
     List <Commande> getAllcommande();
     void validercommande(Long idcmd );
 

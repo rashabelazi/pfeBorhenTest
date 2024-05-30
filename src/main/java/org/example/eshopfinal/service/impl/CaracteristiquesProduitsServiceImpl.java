@@ -1,11 +1,11 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.CaracteristiquesProduits;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.service.impl.CaracteristiquesProduitsService;
+import org.example.eshopfinal.service.ICaracteristiquesProduitsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import org.example.eshopfinal.repository.CaracteristiquesProduitsRepository;
 
 @Service
 @RequiredArgsConstructor
-public class CaracteristiquesProduitsServiceImpl implements CaracteristiquesProduitsService {
+public class CaracteristiquesProduitsServiceImpl implements ICaracteristiquesProduitsService {
     @Autowired
 
     CaracteristiquesProduitsRepository RepCarac;

@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public interface MarqueService {
+public interface IMarqueService {
     Marque AjouterMarque(Marque m);
    void supprimerMarque(Long idm) throws ChangeSetPersister.NotFoundException;
     void updatemarque(Long idm , Marque m);

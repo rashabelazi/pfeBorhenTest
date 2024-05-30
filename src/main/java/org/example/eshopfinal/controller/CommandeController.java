@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Commande;
-import org.example.eshopfinal.service.CommandeServiceImpl;
+import org.example.eshopfinal.service.impl.CommandeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Produit;
-import org.example.eshopfinal.service.impl.ProduitService;
+import org.example.eshopfinal.service.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ProduitController {
     @Autowired
-    ProduitService produitService;
+    IProduitService produitService;
 
     @GetMapping
 

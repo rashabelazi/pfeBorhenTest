@@ -6,12 +6,11 @@ import org.example.eshopfinal.entities.security.User;
 import org.example.eshopfinal.models.RefreshToken;
 import org.example.eshopfinal.repository.UserRepository;
 import org.example.eshopfinal.security.JwtUtilities;
-import org.example.eshopfinal.service.RefreshTokenService;
-import org.example.eshopfinal.service.impl.UserService;
+import org.example.eshopfinal.service.impl.RefreshTokenService;
+import org.example.eshopfinal.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,14 +31,14 @@ import java.util.Optional;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private final UserService userService;
+    private final IUserService userService;
     private final JwtUtilities jwtUtilities;
     private final RefreshTokenService refreshTokenService;
     private  final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
 
 
-    public UserController(UserService userService, JwtUtilities jwtUtilities, RefreshTokenService refreshTokenService, AuthenticationManager authenticationManager, UserRepository userRepository){
+    public UserController(IUserService userService, JwtUtilities jwtUtilities, RefreshTokenService refreshTokenService, AuthenticationManager authenticationManager, UserRepository userRepository){
         this.userService=userService;
         this.jwtUtilities = jwtUtilities;
         this.refreshTokenService=refreshTokenService;

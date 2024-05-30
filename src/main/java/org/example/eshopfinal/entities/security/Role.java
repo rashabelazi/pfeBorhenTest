@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ROLES")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
@@ -23,6 +23,12 @@ public class Role {
     @OneToMany
     @JoinColumn(name="idRole")
     private List<User> user;
+    @ManyToMany
+    @JoinTable(
+            name = "role_permissions",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    private List<Permission> permissions;
 
 
 

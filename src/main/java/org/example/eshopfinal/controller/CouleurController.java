@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Couleur;
-import org.example.eshopfinal.service.CouleurServiceImpl;
+import org.example.eshopfinal.service.impl.CouleurServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

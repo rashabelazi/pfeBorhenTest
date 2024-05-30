@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Stock;
-import org.example.eshopfinal.service.StockServiceImpl;
+import org.example.eshopfinal.service.impl.StockServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

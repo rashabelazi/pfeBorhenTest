@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 
 import org.example.eshopfinal.dto.UserRequest;
@@ -7,7 +7,7 @@ import org.example.eshopfinal.entities.security.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface IUserService {
 
     UserResponse saveUser(UserRequest userRequest);
 

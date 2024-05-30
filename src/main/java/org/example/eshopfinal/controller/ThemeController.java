@@ -5,7 +5,7 @@ import org.example.eshopfinal.entities.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
-import org.example.eshopfinal.service.impl.ThemeService;
+import org.example.eshopfinal.service.IThemeService;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class ThemeController {
     @Autowired
 
-    ThemeService themeService;
+    IThemeService themeService;
     @GetMapping
     public List<Theme> getAllTheme(){
         List<Theme> list=themeService.getAllTheme();

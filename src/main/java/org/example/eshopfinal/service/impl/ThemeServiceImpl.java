@@ -1,8 +1,8 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 
 import org.example.eshopfinal.entities.Theme;
-import org.example.eshopfinal.service.impl.ThemeService;
+import org.example.eshopfinal.service.IThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.example.eshopfinal.repository.ThemeRepository;
 import java.util.List;
 
 @Service
-public class ThemeServiceImpl implements ThemeService {
+public class ThemeServiceImpl implements IThemeService {
     @Autowired
     ThemeRepository RepTheme;
     @Override

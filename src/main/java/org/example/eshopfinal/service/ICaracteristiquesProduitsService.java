@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public interface CaracteristiquesProduitsService {
+public interface ICaracteristiquesProduitsService {
     CaracteristiquesProduits ajoutercaract(CaracteristiquesProduits car);
     void supprimercaract( Long codecar) throws ChangeSetPersister.NotFoundException;
     void updatecaract(Long codecar, CaracteristiquesProduits car);

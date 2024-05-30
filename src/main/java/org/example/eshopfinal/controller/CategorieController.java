@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Categorie;
-import org.example.eshopfinal.service.CategorieServiceImpl;
+import org.example.eshopfinal.service.impl.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CategorieController {
 
 @Autowired
-    CategorieServiceImpl categorieService;
+CategorieService categorieService;
     @GetMapping
     public List<Categorie> getAllCategorie() {
         List<Categorie> list = categorieService.getAllCategorie();

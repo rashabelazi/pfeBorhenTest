@@ -1,11 +1,11 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.entities.Marque;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.service.impl.MarqueService;
+import org.example.eshopfinal.service.IMarqueService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.example.eshopfinal.repository.MarqueRepository;
 
 @Service
 @RequiredArgsConstructor
-public class MarqueServiceImpl implements MarqueService {
+public class MarqueServiceImpl implements IMarqueService {
 
     private final MarqueRepository RepMarque;
     @Override

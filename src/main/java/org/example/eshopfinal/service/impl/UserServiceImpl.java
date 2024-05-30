@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
 import org.example.eshopfinal.entities.security.User;
 
-import org.example.eshopfinal.service.impl.UserService;
+import org.example.eshopfinal.service.IUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
 

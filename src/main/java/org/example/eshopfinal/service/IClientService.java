@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public interface ClientService {
+public interface IClientService {
     Client Ajouterclient(Client cli);
     void updateclient(Client cli, Long id);
     Client Desactiverclient(Long id);

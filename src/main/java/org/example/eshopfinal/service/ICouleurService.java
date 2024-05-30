@@ -1,4 +1,4 @@
-package org.example.eshopfinal.service.impl;
+package org.example.eshopfinal.service;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public interface CouleurService {
+public interface ICouleurService {
     Couleur ajoutercouleur(Couleur c);
     void desactiver(String CodeCl);
     void updatecouleur(String  CodeCl, Couleur c );

@@ -1,10 +1,10 @@
-package org.example.eshopfinal.service;
+package org.example.eshopfinal.service.impl;
 
 import java.util.List;
 
 import org.example.eshopfinal.entities.Client;
 import jakarta.transaction.Transactional;
-import org.example.eshopfinal.service.impl.ClientService;
+import org.example.eshopfinal.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.example.eshopfinal.repository.ClientRepository;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientServiceImpl implements IClientService {
     @Autowired
     ClientRepository Repclient;
 

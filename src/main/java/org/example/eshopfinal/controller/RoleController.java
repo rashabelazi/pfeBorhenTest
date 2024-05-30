@@ -2,7 +2,7 @@ package org.example.eshopfinal.controller;
 
 import lombok.AllArgsConstructor;
 import org.example.eshopfinal.entities.security.Role;
-import org.example.eshopfinal.service.impl.RoleService;
+import org.example.eshopfinal.service.IRoleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class RoleController {
 
-    private final RoleService roleService;
+    private final IRoleService roleService;
 
 
 
