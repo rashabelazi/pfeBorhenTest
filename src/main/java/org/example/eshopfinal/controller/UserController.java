@@ -92,7 +92,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    @ActiveRole(roles = {"BALLON"})
+    @ActiveRole(roles = {"ADMIN"})
     public ResponseEntity<?> getAllUsers() {
         try {
             List<UserResponse> userList = userService.getAllUser();

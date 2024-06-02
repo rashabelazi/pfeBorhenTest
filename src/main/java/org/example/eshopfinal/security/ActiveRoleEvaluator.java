@@ -39,6 +39,7 @@ public class ActiveRoleEvaluator implements PermissionEvaluator {
     }
 
     private boolean hasRole(Authentication authentication, String roleName) {
+        System.out.println(roleName+" ----------------------");
         return authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
     }
