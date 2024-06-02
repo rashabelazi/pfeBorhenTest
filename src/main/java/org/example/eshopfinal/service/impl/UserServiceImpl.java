@@ -4,8 +4,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.eshopfinal.dto.UserRequest;
 import org.example.eshopfinal.dto.UserResponse;
+import org.example.eshopfinal.entities.security.Role;
 import org.example.eshopfinal.entities.security.User;
 
+import org.example.eshopfinal.repository.RoleRepository;
 import org.example.eshopfinal.service.IUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -28,6 +30,7 @@ import java.util.Optional;
 public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     ModelMapper modelMapper = new ModelMapper();
 
@@ -35,49 +38,32 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserResponse saveUser(UserRequest userRequest) {
-        if(userRequest.getUsername() == null){
+        if (userRequest.getUsername() == null) {
             throw new RuntimeException("Parameter username is not found in request..!!");
-        } else if(userRequest.getPassword() == null){
+        } else if (userRequest.getPassword() == null) {
             throw new RuntimeException("Parameter password is not found in request..!!");
         }
-
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        UserDetails userDetail = (UserDetails) authentication.getPrincipal();
-//        String usernameFromAccessToken = userDetail.getUsername();
-//
-//        UserInfo currentUser = userRepository.findByUsername(usernameFromAccessToken);
-
-        User savedUser = null;
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = userRequest.getPassword();
         String encodedPassword = encoder.encode(rawPassword);
 
         User user = modelMapper.map(userRequest, User.class);
-        user.setPassword(encodedPassword);
-        user.setRoles(userRequest.getRoles().stream().findFirst().get());
-        if(userRequest.getId() != null){
-            User oldUser = userRepository.findFirstById(userRequest.getId());
-            if(oldUser != null){
-                oldUser.setId(user.getId());
-                oldUser.setPassword(user.getPassword());
-                oldUser.setUsername(user.getUsername());
-                oldUser.setRoles(user.getRoles());
+        Role role=roleRepository.findById(userRequest.getRoleId()).orElse(null);
+        System.out.println(role);
+        System.out.println(userRequest);
+        user=User.builder()
+                .flag(true)
+                .numTel(userRequest.getNumTel())
+                .mail(userRequest.getMail())
+                .username(userRequest.getUsername())
+                .password(encodedPassword)
+                .roles(role)
+                .build();
 
-                savedUser = userRepository.save(oldUser);
-                userRepository.refresh(savedUser);
-            } else {
-                throw new RuntimeException("Can't find record with identifier: " + userRequest.getId());
-            }
-        } else {
-//            user.setCreatedBy(currentUser);
-            savedUser = userRepository.save(user);
-        }
-          userRepository.refresh(savedUser);
-
+        User savedUser = userRepository.save(user);
+        System.out.println(savedUser);
         UserResponse userResponse = modelMapper.map(savedUser, UserResponse.class);
-        userResponse.setRoles(userRequest.getRoles());
         return userResponse;
     }
 

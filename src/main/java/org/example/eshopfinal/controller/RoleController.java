@@ -18,7 +18,7 @@ public class RoleController {
 
 
     @GetMapping
-    public List<Role> getAllRole(){
+    public List<Role> getAllRoles(){
         List<Role> list= roleService.getAllRole();
         return  list;
     }

@@ -1,6 +1,7 @@
 package org.example.eshopfinal.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
@@ -26,44 +27,48 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @EnableMethodSecurity(prePostEnabled = true)
-public class SecurityConfig{
-    private final JwtAuthenticationFilter jwtAuthenticationFilter ;
-    private final ActiveRoleEvaluator activeRoleEvaluator;
+public class SecurityConfig {
+
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Autowired
+    private ActiveRoleEvaluator activeRoleEvaluator;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new CustomerUserDetailsService();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.
-                csrf((csrf)->csrf.disable())
-                .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/v1/login").permitAll()
-                        .requestMatchers("/api/v1/refreshToken").permitAll()
-                        .requestMatchers("/error/*").permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement((sessionManagement)-> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();
+        http .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/v1/role","/api/v1/auth/login","/ooredoo-docs", "/error/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/ooredoo-docs/**", "/ooredoo-api/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
 
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(new CustomerUserDetailsService());
+        authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
-
     }
 
     @Bean
@@ -77,5 +82,4 @@ public class SecurityConfig{
         expressionHandler.setPermissionEvaluator(activeRoleEvaluator);
         return expressionHandler;
     }
-
 }

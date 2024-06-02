@@ -23,6 +23,7 @@ public class ActiveRoleEvaluator implements PermissionEvaluator {
 
     @Override
     public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
+        System.out.println("iciiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         String[] roles = (String[]) permission;
         for (String role : roles) {
             if (hasRole(authentication, role) && roleService.isRoleActive(role) && hasPermission(authentication, role, targetDomainObject)) {

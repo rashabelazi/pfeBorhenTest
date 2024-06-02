@@ -30,25 +30,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtilities jwtUtilities ;
     private final CustomerUserDetailsService customerUserDetailsService ;
 
-   @Override
-   protected void doFilterInternal(@NonNull HttpServletRequest request,
-                                   @NonNull HttpServletResponse response,
-                                   @NonNull FilterChain filterChain)
-           throws ServletException, IOException {
-       String token = jwtUtilities.getToken(request) ;
-       if (token!=null && jwtUtilities.validateToken(token))
-       {
-           String email = jwtUtilities.extractUsername(token);
-           UserDetails userDetails = customerUserDetailsService.loadUserByUsername(email);
-           if (userDetails != null) {
-               UsernamePasswordAuthenticationToken authentication =
-                       new UsernamePasswordAuthenticationToken(userDetails.
-                               getUsername() ,null , userDetails.getAuthorities());
-               log.info("authenticated user with email :{}", email);
-               SecurityContextHolder.getContext().setAuthentication(authentication);
-           }
-       }
-       filterChain.doFilter(request,response);
-   }
+    @Override
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain)
+            throws ServletException, IOException {
+        String path = request.getRequestURI();
+//        if (path.contains("/api/v1/auth/login") || path.startsWith("/v3/api-docs/") ||
+//                path.startsWith("/swagger-ui/") || path.startsWith("/swagger-ui.html") ||
+//                path.startsWith("/ooredoo-docs/") || path.startsWith("/ooredoo-api/") ||
+//                path.startsWith("/error")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+        String token = jwtUtilities.getToken(request) ;
+        if (token != null && jwtUtilities.validateToken(token)) {
+            String email = jwtUtilities.extractUsername(token);
+            UserDetails userDetails = customerUserDetailsService.loadUserByUsername(email);
+            if (userDetails != null) {
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                log.info("Authenticated user with email: {}", email);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        }
+        filterChain.doFilter(request,response);
+    }
 }
 

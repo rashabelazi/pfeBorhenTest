@@ -37,14 +37,12 @@ public class RoleServiceImpl implements IRoleService {
 
     }
 
-
     @Transactional
     @Override
     public Role FlagRole(Long idr) {
-
-            Role role = roleRepository.findById(idr).orElseThrow(() -> new UsernameNotFoundException("Role not found"));
-            role.setFlag(!role.getFlag());
-            return roleRepository.save(role);
+        Role role = roleRepository.findById(idr).orElseThrow(() -> new UsernameNotFoundException("Role not found"));
+        role.setFlag(!role.getFlag());
+        return roleRepository.save(role);
     }
 
 
@@ -56,10 +54,7 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public Role getRoleById(Long idr) {
-        return roleRepository.findById(idr).orElse
-                (null);
-
-
+        return roleRepository.findById(idr).orElse(null);
     }
 
     public boolean isRoleActive(String roleName) {

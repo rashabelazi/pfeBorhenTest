@@ -1,6 +1,7 @@
 package org.example.eshopfinal.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.eshopfinal.decorators.ActiveRole;
 import org.example.eshopfinal.entities.Client;
 import org.example.eshopfinal.service.impl.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/client")
+@RequestMapping("client")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ClientController {
 @Autowired
     ClientServiceImpl clientService;
-    @GetMapping
-    public List<Client> GetAllClient(){
+
+@GetMapping
+public List<Client> GetAllClient(){
         List<Client> list=clientService.getAllclient();
         return list;
 

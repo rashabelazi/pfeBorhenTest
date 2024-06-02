@@ -1,5 +1,6 @@
 package org.example.eshopfinal.entities.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,9 @@ public class Role {
     private  Long id;
     private String label;
     private Boolean flag;
-    @OneToMany
-    @JoinColumn(name="idRole")
-    private List<User> user;
+
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "role_permissions",
             joinColumns = @JoinColumn(name = "role_id"),

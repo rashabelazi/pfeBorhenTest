@@ -21,6 +21,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User implements Serializable, UserDetails {
@@ -38,7 +39,7 @@ public class User implements Serializable, UserDetails {
 
     private boolean flag;
 
-    private Integer numTel;
+    private String numTel;
 
     @ManyToOne
     @JoinColumn(name="idRole")
@@ -57,7 +58,7 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public String getUsername() {
-        return this.mail;
+        return this.username;
     }
 
     @Override

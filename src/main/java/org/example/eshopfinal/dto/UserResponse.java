@@ -14,10 +14,11 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 public class UserResponse {
-
     private Long id;
     private String username;
-    private Set<Role> roles;
-
-
+    private String password;
+    private String mail;
+    private String numTel;
+    private boolean flag;
+    private Role roles;
 }

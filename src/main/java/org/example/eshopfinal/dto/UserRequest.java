@@ -18,5 +18,8 @@ public class UserRequest {
     private Long id;
     private String username;
     private String password;
-    private Set<Role> roles;
+    private String mail;
+    private String numTel;
+    private boolean flag=true;
+    private long roleId;
 }
