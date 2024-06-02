@@ -31,6 +31,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1/auth")
 @CrossOrigin(origins = "*")
 public class UserController {
+    //ADmin
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final IUserService userService;

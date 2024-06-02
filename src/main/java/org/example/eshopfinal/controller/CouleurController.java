@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("api/v1/couleur")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-
+//Logisticien
 public class CouleurController {
     @Autowired
     CouleurServiceImpl CouleurService;

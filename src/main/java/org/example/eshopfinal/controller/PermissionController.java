@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/permissions")
 public class PermissionController {
-
+//ADMIN
     @Autowired
     private PermissionService permissionService;
 

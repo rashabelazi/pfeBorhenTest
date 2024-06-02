@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class MarqueController {
-
+//logisticien
     @Autowired
     MarqueServiceImpl MarqueService;
     @GetMapping

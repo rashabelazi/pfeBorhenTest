@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CommandeController {
+    //Vendeur
     @Autowired
    CommandeServiceImpl commandeService;
     @GetMapping

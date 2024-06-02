@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CategorieController {
-
+//vendeur
 @Autowired
 CategorieService categorieService;
     @GetMapping

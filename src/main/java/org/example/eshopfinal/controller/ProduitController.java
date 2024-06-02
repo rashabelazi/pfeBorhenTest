@@ -20,6 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ProduitController {
+    //ajout:logisticien
+    //modification & suppression:Vendeur
     @Autowired
     IProduitService produitService;
 

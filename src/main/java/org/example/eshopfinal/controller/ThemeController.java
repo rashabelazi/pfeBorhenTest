@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ThemeController {
+    //Vendeur
     @Autowired
 
     IThemeService themeService;

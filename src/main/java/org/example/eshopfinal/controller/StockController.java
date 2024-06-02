@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class StockController {
+    //Logisticien
     StockServiceImpl StockService;
 
     @GetMapping

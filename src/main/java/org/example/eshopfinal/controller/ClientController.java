@@ -23,7 +23,7 @@ public List<Client> GetAllClient(){
         return list;
 
 
-
+//vendeur
     }
     @PostMapping("/add")
     public Client AjouterClient(@RequestBody Client cli){

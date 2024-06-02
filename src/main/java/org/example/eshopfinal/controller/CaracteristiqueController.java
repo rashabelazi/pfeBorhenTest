@@ -17,7 +17,7 @@ public class CaracteristiqueController {
     public CaracteristiqueController(CaracteristiquesProduitsServiceImpl service){
         this.caractProduitService=service;
     }
-
+//role:Vendeur
 
     @GetMapping
     @ActiveRole(roles = {"ROLE_X", "ROLE_Y"})
